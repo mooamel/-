@@ -16,7 +16,7 @@ JMVERSION = "5.2.0"
 
 
 if Config.UPSTREAM_REPO == "jepthoniq":
-    UPSTREAM_REPO_URL = "https://github.com/jepthoniq/jepthon"
+    UPSTREAM_REPO_URL = "https://github.com/jepthoniq/jep"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
