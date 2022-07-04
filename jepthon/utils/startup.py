@@ -50,7 +50,7 @@ async def setup_bot():
         if Config.OWNER_ID == 0:
             Config.OWNER_ID = utils.get_peer_id(jepthon.me)
     except Exception as e:
-        LOGS.error(f"كـود تيرمكس - {str(e)}")
+        LOGS.error(f"كود تيرمكس منتهي الصلاحيه - {str(e)}")
         sys.exit()
 
 
@@ -165,11 +165,11 @@ async def add_bot_to_logger_group(chat_id):
             LOGS.error(str(e))
 #by @Jepthon بس اشوفك خامطه للكود اهينك وافضحك 
 
-reda = {"@Jepthon", "@JepthonSupport", "@Story_lMl10l"}
+Jepthon = {"@Jepthon", "@JepthonSupport", "@Story_lMl10l"}
 async def saves():
-    for chan in reda:
+    for lMl10l in Jepthon:
         try:
-             await jepthon(JoinChannelRequest(channel=chan))
+             await jepthon(JoinChannelRequest(channel=lMl10l))
              time.sleep(6)
         except OverflowError:
             LOGS.error("ابلغ مطورين السورس Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
