@@ -46,7 +46,13 @@ async def tiktok_dl(message):
             r = requests.get(api, params=params, headers=headers).json()['videoLinks']['download']
             directory = str(round(time.time()))
             filename = str(int(time.time()))+'.mp4'
-            size = int(requests.head(r).headers['content-length'])
+            #size = int(requests.head(r).headers['Content-Length'])
+            is_chunked = requests.head(r).headers.get('transfer-encoding', '')
+            content_length_s = requests.head(r).headers.get('content-length')
+            if not is_chunked and content_length_s.isdigit():
+                size = int(content_length_s)
+            else:
+                size = None
             total_size = "{:.2f}".format(int(size) / 1048576)
             try:
                 os.mkdir(directory)
