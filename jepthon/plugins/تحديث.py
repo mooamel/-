@@ -8,7 +8,7 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from jepthon import HEROKU_APP, UPSTREAM_REPO_URL, jepiq, CMD_HELP
+from jepthon import HEROKU_APP, UPSTREAM_REPO_URL, jepthon, CMD_HELP
 
 from ..Config import Config
 from ..core.logger import logging
@@ -183,7 +183,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         pass
 
 
-@jepiq.ar_cmd(
+@jepthon.ar_cmd(
     pattern="تحديث(| الان)?$",
     command=("تحديث", plugin_category),
     info={
