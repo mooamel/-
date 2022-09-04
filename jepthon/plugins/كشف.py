@@ -90,17 +90,14 @@ async def _(event):
         return
     catevent = await edit_or_reply(event, "⌯︙جار إحضار معلومات المستخدم اننظر قليلا ⚒️")
     replied_user = await event.client(GetFullUserRequest(replied_user.id))
-    user_id = replied_user.user.id
-    # some people have weird HTML in their names
-    first_name = html.escape(replied_user.user.first_name)
-    # https://stackoverflow.com/a/5072031/4723940
-    # some Deleted Accounts do not have first_name
+    user_id = replied_user.users[0].id
+     first_name = html.escape(replied_user.users[0].first_name)
     if first_name is not None:
         # some weird people (like me) have more than 4096 characters in their
         # names
         first_name = first_name.replace("\u2060", "")
     # inspired by https://telegram.dog/afsaI181
-    common_chats = replied_user.common_chats_count
+    common_chats = 1
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception:
@@ -137,7 +134,7 @@ async def _(event):
         user_id,
         common_chats,
         dc_id,
-        replied_user.user.restricted,
+        replied_user.user[0].restricted,
         sw,
         cas,
     )
