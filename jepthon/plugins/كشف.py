@@ -85,7 +85,7 @@ async def fetch_info(replied_user, event):
 )
 async def _(event):
     "Gets information of an user such as restrictions ban by spamwatch or cas"
-    replied_user, error_i_a = await get_user_from_event(event)
+    replied_user = await get_user_from_event(event)
     if not replied_user:
         return
     catevent = await edit_or_reply(event, "⌯︙جار إحضار معلومات المستخدم اننظر قليلا ⚒️")
