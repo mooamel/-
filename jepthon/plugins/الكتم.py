@@ -28,7 +28,7 @@ async def startgmute(event):
     if event.is_private:
         await event.edit("**𖡛... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...𖡛**")
         await asyncio.sleep(2)
-        userid = event.chat_id
+        id = event.chat_id
         reason = event.pattern_match.group(1)
     else:
         user, reason = await get_user_from_event(event)
@@ -38,18 +38,18 @@ async def startgmute(event):
             return await edit_delete(event, "**- لا يمڪنني كتم مطـوري يافرخ دي لك**")
         if user.id == jepthon.uid:
             return await edit_or_reply(event, "**𖡛... . لمـاذا تࢪيـد كتم نفسـك؟  ...𖡛**")
-        userid = user.id
+        id = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
         return await edit_or_reply(event, "**𖡛... غيـر قـادر عـلى جـلب مـعلومات الـشخص ...𖡛**")
-    if is_muted(userid, "gmute"):
+    if is_muted(id, "gmute"):
         return await edit_or_reply(
             event,
             f"**𖡛... هـذا الشـخص مكـتوم بـنجاح ...𖡛**",
         )
     try:
-        mute(userid, "gmute")
+        mute(id, "gmute")
     except Exception as e:
         await edit_or_reply(event, f"**خـطأ**\n`{e}`")
     else:
